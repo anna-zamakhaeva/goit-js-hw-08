@@ -1,0 +1,12 @@
+ul {
+    margin: 0;
+    list-style: none;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.gallery-item:focus {
+    cursor: zoom-inpointer;
+}
