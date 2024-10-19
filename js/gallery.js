@@ -66,10 +66,40 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-const elements = images
-    .map(image => `<li class="gallery-item"><a class="gallery-link" href="${image.original}"><img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}" width=360></a></li>`)
+gallery.insertAdjacentHTML("beforeend", createMarkup(images));
+function createMarkup(arr) {
+    return arr
+        .map(image => `
+        <li class="gallery-item">
+        <a class="gallery-link" href="${image.original}">
+        <img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}">
+        </a>
+        </li>`)
     .join("");
+            
+}
 
-gallery.insertAdjacentHTML("beforeend", elements);
+gallery.addEventListener("click", handler);
+function handler(event) {
+    console.log(event.target);
     
-addEventListener("click", gallery);
+    event.preventDefault();
+    if (event.target.nodeName !== 'IMG') {
+        return;
+    }
+
+    const currentItem = event.target.dataset.source;
+    const image = images.find((item => item.original === currentItem))
+    
+
+    const instance = basicLightbox.create(`
+    <div class="modal">
+    <img src="${image.original}" alt="${image.description}">
+    </div>
+    `)
+        
+    instance.show();
+}
+
+
+

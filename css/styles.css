@@ -6,7 +6,27 @@ ul {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    margin: 0 auto;
+    max-width: 1128px;
+    padding: 24px;
+    justify-content: center;
 }
-.gallery-item:focus {
-    cursor: zoom-inpointer;
+.gallery-link {
+    cursor: zoom-in;
+}
+.gallery-item {
+    width: calc((100% - 48px) / 3);
+}
+.gallery-item img {
+    display: block;
+    max-height: 200px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item img:hover {
+    transform: scale(1.1);
+
+}
+
+.modal img {
+    max-width: 1128px;
 }
